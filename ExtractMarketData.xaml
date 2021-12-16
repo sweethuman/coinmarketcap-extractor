@@ -176,7 +176,7 @@
                         </ui:Target>
                       </ui:Click.Target>
                     </ui:Click>
-                    <Flowchart sap:VirtualizedContainerService.HintSize="1016.66666666667,962" sap2010:WorkflowViewState.IdRef="Flowchart_1">
+                    <Flowchart sap:VirtualizedContainerService.HintSize="334,52.6666666666667" sap2010:WorkflowViewState.IdRef="Flowchart_1">
                       <Flowchart.Variables>
                         <Variable x:TypeArguments="x:Boolean" Name="isCaretDown" />
                         <Variable x:TypeArguments="sd:DataTable" Name="bestBuyData" />
@@ -313,12 +313,8 @@
                                             </sap:WorkflowViewStateService.ViewState>
                                             <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke FilterTable workflow" sap:VirtualizedContainerService.HintSize="200,52.6666666666667" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_6" UnSafe="False" WorkflowFileName="FilterTable.xaml">
                                               <ui:InvokeWorkflowFile.Arguments>
-                                                <InOutArgument x:TypeArguments="sd:DataTable" x:Key="data">
-                                                  <mva:VisualBasicReference x:TypeArguments="sd:DataTable" ExpressionText="bestBuyData" />
-                                                </InOutArgument>
-                                                <InArgument x:TypeArguments="x:String" x:Key="coinName">
-                                                  <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="coinName" />
-                                                </InArgument>
+                                                <InOutArgument x:TypeArguments="sd:DataTable" x:Key="data">[bestBuyData]</InOutArgument>
+                                                <InArgument x:TypeArguments="x:String" x:Key="coinName">[coinName]</InArgument>
                                               </ui:InvokeWorkflowFile.Arguments>
                                               <sap:WorkflowViewStateService.ViewState>
                                                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -337,12 +333,8 @@
                                                 </sap:WorkflowViewStateService.ViewState>
                                                 <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke FilterTable workflow" sap:VirtualizedContainerService.HintSize="334,114" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_7" UnSafe="False" WorkflowFileName="FilterTable.xaml">
                                                   <ui:InvokeWorkflowFile.Arguments>
-                                                    <InOutArgument x:TypeArguments="sd:DataTable" x:Key="data">
-                                                      <mva:VisualBasicReference x:TypeArguments="sd:DataTable" ExpressionText="bestSellData" />
-                                                    </InOutArgument>
-                                                    <InArgument x:TypeArguments="x:String" x:Key="coinName">
-                                                      <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="coinName" />
-                                                    </InArgument>
+                                                    <InOutArgument x:TypeArguments="sd:DataTable" x:Key="data">[bestSellData]</InOutArgument>
+                                                    <InArgument x:TypeArguments="x:String" x:Key="coinName">[coinName]</InArgument>
                                                   </ui:InvokeWorkflowFile.Arguments>
                                                   <sap:WorkflowViewStateService.ViewState>
                                                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -485,13 +477,14 @@
                   </Sequence>
                 </If.Then>
                 <If.Else>
-                  <Sequence sap:VirtualizedContainerService.HintSize="376,186.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_24">
+                  <Sequence sap:VirtualizedContainerService.HintSize="376,248.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_24">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
                     <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,94.6666666666667" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Warn" Message="[&quot;For Coin&quot; + coinName + &quot; market data not found&quot;]" />
+                    <Throw Exception="[new BusinessRuleException(coinName + &quot;not accesible&quot;)]" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="Throw_1" />
                   </Sequence>
                 </If.Else>
               </If>
