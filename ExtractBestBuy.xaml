@@ -73,7 +73,7 @@
       <AssemblyReference>System.Globalization.Extensions</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Extract Best Buy" sap:VirtualizedContainerService.HintSize="476,794" sap2010:WorkflowViewState.IdRef="Sequence_18">
+  <Sequence DisplayName="Extract Best Buy" sap:VirtualizedContainerService.HintSize="476,1063.33333333333" sap2010:WorkflowViewState.IdRef="Sequence_18">
     <Sequence.Variables>
       <Variable x:TypeArguments="sd:DataTable" Default="[New System.Data.DataTable]" Name="ExtractDataTable" />
     </Sequence.Variables>
@@ -82,6 +82,7 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="434,94.6666666666667" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Trace" Message="[&quot;Extracting best buy data of coin: &quot; + coinName]" />
     <ui:BrowserScope Browser="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" BrowserType="Edge" DisplayName="Attach Browser 'Bitcoinpr Page'" sap:VirtualizedContainerService.HintSize="434,344" sap2010:WorkflowViewState.IdRef="BrowserScope_6" InformativeScreenshot="898972272e610962d25de0fa5edeaf60" Selector="&lt;html app='msedge.exe' title='* price today, * to * live, marketcap and chart | CoinMarketCap' /&gt;">
       <ui:BrowserScope.Body>
         <ActivityAction x:TypeArguments="x:Object">
@@ -134,5 +135,6 @@
         <InArgument x:TypeArguments="sd:DataTable">[ExtractDataTable]</InArgument>
       </Assign.Value>
     </Assign>
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="434,94.6666666666667" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Trace" Message="[&quot;Finished extracting best buy data of coin: &quot; + coinName]" />
   </Sequence>
 </Activity>

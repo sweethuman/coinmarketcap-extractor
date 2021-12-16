@@ -7,7 +7,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1848,1474</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1848,1743.33333333333</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ExtractMarketData_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -80,25 +80,26 @@
       <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="ExtractMarketData" sap:VirtualizedContainerService.HintSize="811.333333333333,1409.33333333333" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="ExtractMarketData" sap:VirtualizedContainerService.HintSize="958,1678.66666666667" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <Sequence DisplayName="Web" sap:VirtualizedContainerService.HintSize="769.333333333333,1317.33333333333" sap2010:WorkflowViewState.IdRef="Sequence_6">
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="916,94.6666666666667" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Trace" Message="[&quot;Extracting data for coin: &quot; + coinName]" />
+    <Sequence DisplayName="Web" sap:VirtualizedContainerService.HintSize="916,1317.33333333333" sap2010:WorkflowViewState.IdRef="Sequence_6">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <ui:BrowserScope Browser="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" BrowserType="Edge" DisplayName="Attach Browser 'Bitcoinpr Page'" sap:VirtualizedContainerService.HintSize="727.333333333333,1225.33333333333" sap2010:WorkflowViewState.IdRef="BrowserScope_1" InformativeScreenshot="5043299d247a1dba34db832211aa657a" Selector="&lt;html app='msedge.exe' title='* price today, * to * live, marketcap and chart | CoinMarketCap' /&gt;">
+      <ui:BrowserScope Browser="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" BrowserType="Edge" DisplayName="Attach Browser 'Bitcoinpr Page'" sap:VirtualizedContainerService.HintSize="874,1225.33333333333" sap2010:WorkflowViewState.IdRef="BrowserScope_1" InformativeScreenshot="5043299d247a1dba34db832211aa657a" Selector="&lt;html app='msedge.exe' title='* price today, * to * live, marketcap and chart | CoinMarketCap' /&gt;">
         <ui:BrowserScope.Body>
           <ActivityAction x:TypeArguments="x:Object">
             <ActivityAction.Argument>
               <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
             </ActivityAction.Argument>
-            <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="693.333333333333,1079.33333333333" sap2010:WorkflowViewState.IdRef="Sequence_2">
+            <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="840,1079.33333333333" sap2010:WorkflowViewState.IdRef="Sequence_2">
               <Sequence.Variables>
                 <Variable x:TypeArguments="x:Boolean" Name="marketButtonExists" />
               </Sequence.Variables>
@@ -107,7 +108,7 @@
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <ui:UiElementExists DisplayName="Element Exists" Exists="[marketButtonExists]" sap:VirtualizedContainerService.HintSize="651.333333333333,68" sap2010:WorkflowViewState.IdRef="UiElementExists_3">
+              <ui:UiElementExists DisplayName="Element Exists" Exists="[marketButtonExists]" sap:VirtualizedContainerService.HintSize="798,68" sap2010:WorkflowViewState.IdRef="UiElementExists_3">
                 <ui:UiElementExists.Target>
                   <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="0cfa6ea8-7a8b-4593-9b01-17a56a9d9c95" Selector="&lt;webctrl aaname='Market' tag='A' /&gt;">
                     <ui:Target.TimeoutMS>
@@ -119,7 +120,7 @@
                   </ui:Target>
                 </ui:UiElementExists.Target>
               </ui:UiElementExists>
-              <If Condition="[marketButtonExists]" sap:VirtualizedContainerService.HintSize="651.333333333333,879.333333333333" sap2010:WorkflowViewState.IdRef="If_1">
+              <If Condition="[marketButtonExists]" sap:VirtualizedContainerService.HintSize="798,879.333333333333" sap2010:WorkflowViewState.IdRef="If_1">
                 <If.Then>
                   <Sequence sap:VirtualizedContainerService.HintSize="376,728.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_23">
                     <sap:WorkflowViewStateService.ViewState>
@@ -315,6 +316,9 @@
                                                 <InOutArgument x:TypeArguments="sd:DataTable" x:Key="data">
                                                   <mva:VisualBasicReference x:TypeArguments="sd:DataTable" ExpressionText="bestBuyData" />
                                                 </InOutArgument>
+                                                <InArgument x:TypeArguments="x:String" x:Key="coinName">
+                                                  <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="coinName" />
+                                                </InArgument>
                                               </ui:InvokeWorkflowFile.Arguments>
                                               <sap:WorkflowViewStateService.ViewState>
                                                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -331,11 +335,14 @@
                                                     <av:PointCollection x:Key="ConnectorLocation">370,820 400,820 400,810 440,810</av:PointCollection>
                                                   </scg:Dictionary>
                                                 </sap:WorkflowViewStateService.ViewState>
-                                                <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke FilterTable workflow" sap:VirtualizedContainerService.HintSize="200,52.6666666666667" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_7" UnSafe="False" WorkflowFileName="FilterTable.xaml">
+                                                <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke FilterTable workflow" sap:VirtualizedContainerService.HintSize="334,114" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_7" UnSafe="False" WorkflowFileName="FilterTable.xaml">
                                                   <ui:InvokeWorkflowFile.Arguments>
                                                     <InOutArgument x:TypeArguments="sd:DataTable" x:Key="data">
                                                       <mva:VisualBasicReference x:TypeArguments="sd:DataTable" ExpressionText="bestSellData" />
                                                     </InOutArgument>
+                                                    <InArgument x:TypeArguments="x:String" x:Key="coinName">
+                                                      <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="coinName" />
+                                                    </InArgument>
                                                   </ui:InvokeWorkflowFile.Arguments>
                                                   <sap:WorkflowViewStateService.ViewState>
                                                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -351,20 +358,12 @@
                                                         <av:Size x:Key="ShapeSize">200,52.6666666666667</av:Size>
                                                       </scg:Dictionary>
                                                     </sap:WorkflowViewStateService.ViewState>
-                                                    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke WriteCoinTables workflow" sap:VirtualizedContainerService.HintSize="334,114" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_5" UnSafe="False" WorkflowFileName="WriteCoinTables.xaml">
+                                                    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke WriteCoinTables workflow" sap:VirtualizedContainerService.HintSize="200,52.6666666666667" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_5" UnSafe="False" WorkflowFileName="WriteCoinTables.xaml">
                                                       <ui:InvokeWorkflowFile.Arguments>
-                                                        <InArgument x:TypeArguments="sd:DataTable" x:Key="bestBuyData">
-                                                          <mva:VisualBasicValue x:TypeArguments="sd:DataTable" ExpressionText="bestBuyData" />
-                                                        </InArgument>
-                                                        <InArgument x:TypeArguments="sd:DataTable" x:Key="bestSellData">
-                                                          <mva:VisualBasicValue x:TypeArguments="sd:DataTable" ExpressionText="bestSellData" />
-                                                        </InArgument>
-                                                        <InArgument x:TypeArguments="x:String" x:Key="coinName">
-                                                          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="coinName" />
-                                                        </InArgument>
-                                                        <InArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="config">
-                                                          <mva:VisualBasicValue x:TypeArguments="scg:Dictionary(x:String, x:String)" ExpressionText="config" />
-                                                        </InArgument>
+                                                        <InArgument x:TypeArguments="sd:DataTable" x:Key="bestBuyData">[bestBuyData]</InArgument>
+                                                        <InArgument x:TypeArguments="sd:DataTable" x:Key="bestSellData">[bestSellData]</InArgument>
+                                                        <InArgument x:TypeArguments="x:String" x:Key="coinName">[coinName]</InArgument>
+                                                        <InArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="config">[config]</InArgument>
                                                       </ui:InvokeWorkflowFile.Arguments>
                                                       <sap:WorkflowViewStateService.ViewState>
                                                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -486,7 +485,14 @@
                   </Sequence>
                 </If.Then>
                 <If.Else>
-                  <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="229.333333333333,62.6666666666667" sap2010:WorkflowViewState.IdRef="WriteLine_1" Text="[&quot;For Coin&quot; + coinName + &quot; market data not found&quot;]" />
+                  <Sequence sap:VirtualizedContainerService.HintSize="376,186.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_24">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,94.6666666666667" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Warn" Message="[&quot;For Coin&quot; + coinName + &quot; market data not found&quot;]" />
+                  </Sequence>
                 </If.Else>
               </If>
             </Sequence>
@@ -494,5 +500,6 @@
         </ui:BrowserScope.Body>
       </ui:BrowserScope>
     </Sequence>
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="916,94.6666666666667" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Trace" Message="[&quot;Finished Extracting data for coin: &quot; + coinName]" />
   </Sequence>
 </Activity>

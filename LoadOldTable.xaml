@@ -69,10 +69,11 @@
       <AssemblyReference>System.ServiceModel</AssemblyReference>
       <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
       <AssemblyReference>System.Globalization.Extensions</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
       <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="LoadOldTable" sap:VirtualizedContainerService.HintSize="622,636" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="LoadOldTable" sap:VirtualizedContainerService.HintSize="622,905.333333333333" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:Boolean" Name="previousFileExists" />
     </Sequence.Variables>
@@ -81,6 +82,7 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="580,94.6666666666667" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Trace" Message="[&quot;Loading previous run data&quot;]" />
     <ui:PathExists DisplayName="Path Exists" Exists="[previousFileExists]" sap:VirtualizedContainerService.HintSize="580,90.6666666666667" sap2010:WorkflowViewState.IdRef="PathExists_1" Path="[config.Item(&quot;market_file_name&quot;)]" PathType="File" />
     <If Condition="[previousFileExists]" sap:VirtualizedContainerService.HintSize="580,413.333333333333" sap2010:WorkflowViewState.IdRef="If_1">
       <If.Then>
@@ -103,5 +105,6 @@
         </ui:ExcelApplicationScope>
       </If.Then>
     </If>
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="580,94.6666666666667" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Trace" Message="[&quot;Finished previous run data&quot;]" />
   </Sequence>
 </Activity>
