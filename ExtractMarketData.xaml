@@ -3,6 +3,7 @@
     <x:Property Name="coinName" Type="InArgument(x:String)" />
     <x:Property Name="newData" Type="InOutArgument(sd:DataTable)" />
     <x:Property Name="config" Type="InArgument(scg:Dictionary(x:String, x:String))" />
+    <x:Property Name="browser" Type="InArgument(ui:Browser)" />
   </x:Members>
   <mva:VisualBasic.Settings>
     <x:Null />
@@ -93,7 +94,7 @@
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <ui:BrowserScope Browser="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" BrowserType="Edge" DisplayName="Attach Browser 'Bitcoinpr Page'" sap:VirtualizedContainerService.HintSize="874,1225.33333333333" sap2010:WorkflowViewState.IdRef="BrowserScope_1" InformativeScreenshot="5043299d247a1dba34db832211aa657a" Selector="&lt;html app='msedge.exe' title='* price today, * to * live, marketcap and chart | CoinMarketCap' /&gt;">
+      <ui:BrowserScope SearchScope="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" Browser="[browser]" BrowserType="Edge" DisplayName="Attach Browser 'Bitcoinpr Page'" sap:VirtualizedContainerService.HintSize="874,1225.33333333333" sap2010:WorkflowViewState.IdRef="BrowserScope_1" InformativeScreenshot="5043299d247a1dba34db832211aa657a">
         <ui:BrowserScope.Body>
           <ActivityAction x:TypeArguments="x:Object">
             <ActivityAction.Argument>
@@ -176,7 +177,7 @@
                         </ui:Target>
                       </ui:Click.Target>
                     </ui:Click>
-                    <Flowchart sap:VirtualizedContainerService.HintSize="334,52.6666666666667" sap2010:WorkflowViewState.IdRef="Flowchart_1">
+                    <Flowchart sap:VirtualizedContainerService.HintSize="1016.66666666667,962" sap2010:WorkflowViewState.IdRef="Flowchart_1">
                       <Flowchart.Variables>
                         <Variable x:TypeArguments="x:Boolean" Name="isCaretDown" />
                         <Variable x:TypeArguments="sd:DataTable" Name="bestBuyData" />
@@ -237,9 +238,18 @@
                                 </sap:WorkflowViewStateService.ViewState>
                                 <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke ExtractBestSell workflow" sap:VirtualizedContainerService.HintSize="200,52.6666666666667" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="ExtractBestSell.xaml">
                                   <ui:InvokeWorkflowFile.Arguments>
-                                    <InArgument x:TypeArguments="x:String" x:Key="coinName">[coinName]</InArgument>
-                                    <InOutArgument x:TypeArguments="sd:DataTable" x:Key="newData">[newData]</InOutArgument>
-                                    <OutArgument x:TypeArguments="sd:DataTable" x:Key="bestSellData">[bestSellData]</OutArgument>
+                                    <InArgument x:TypeArguments="x:String" x:Key="coinName">
+                                      <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="coinName" />
+                                    </InArgument>
+                                    <InOutArgument x:TypeArguments="sd:DataTable" x:Key="newData">
+                                      <mva:VisualBasicReference x:TypeArguments="sd:DataTable" ExpressionText="newData" />
+                                    </InOutArgument>
+                                    <OutArgument x:TypeArguments="sd:DataTable" x:Key="bestSellData">
+                                      <mva:VisualBasicReference x:TypeArguments="sd:DataTable" ExpressionText="bestSellData" />
+                                    </OutArgument>
+                                    <InArgument x:TypeArguments="ui:Browser" x:Key="browser">
+                                      <mva:VisualBasicValue x:TypeArguments="ui:Browser" ExpressionText="browser" />
+                                    </InArgument>
                                   </ui:InvokeWorkflowFile.Arguments>
                                 </ui:InvokeWorkflowFile>
                                 <FlowStep.Next>
@@ -297,9 +307,18 @@
                                         </sap:WorkflowViewStateService.ViewState>
                                         <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke ExtractBestBuy workflow" sap:VirtualizedContainerService.HintSize="200,52.6666666666667" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" UnSafe="False" WorkflowFileName="ExtractBestBuy.xaml">
                                           <ui:InvokeWorkflowFile.Arguments>
-                                            <InArgument x:TypeArguments="x:String" x:Key="coinName">[coinName]</InArgument>
-                                            <InOutArgument x:TypeArguments="sd:DataTable" x:Key="newData">[newData]</InOutArgument>
-                                            <OutArgument x:TypeArguments="sd:DataTable" x:Key="bestBuyData">[bestBuyData]</OutArgument>
+                                            <InArgument x:TypeArguments="x:String" x:Key="coinName">
+                                              <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="coinName" />
+                                            </InArgument>
+                                            <InOutArgument x:TypeArguments="sd:DataTable" x:Key="newData">
+                                              <mva:VisualBasicReference x:TypeArguments="sd:DataTable" ExpressionText="newData" />
+                                            </InOutArgument>
+                                            <OutArgument x:TypeArguments="sd:DataTable" x:Key="bestBuyData">
+                                              <mva:VisualBasicReference x:TypeArguments="sd:DataTable" ExpressionText="bestBuyData" />
+                                            </OutArgument>
+                                            <InArgument x:TypeArguments="ui:Browser" x:Key="browser">
+                                              <mva:VisualBasicValue x:TypeArguments="ui:Browser" ExpressionText="browser" />
+                                            </InArgument>
                                           </ui:InvokeWorkflowFile.Arguments>
                                         </ui:InvokeWorkflowFile>
                                         <FlowStep.Next>
@@ -313,8 +332,12 @@
                                             </sap:WorkflowViewStateService.ViewState>
                                             <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke FilterTable workflow" sap:VirtualizedContainerService.HintSize="200,52.6666666666667" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_6" UnSafe="False" WorkflowFileName="FilterTable.xaml">
                                               <ui:InvokeWorkflowFile.Arguments>
-                                                <InOutArgument x:TypeArguments="sd:DataTable" x:Key="data">[bestBuyData]</InOutArgument>
-                                                <InArgument x:TypeArguments="x:String" x:Key="coinName">[coinName]</InArgument>
+                                                <InOutArgument x:TypeArguments="sd:DataTable" x:Key="data">
+                                                  <mva:VisualBasicReference x:TypeArguments="sd:DataTable" ExpressionText="bestBuyData" />
+                                                </InOutArgument>
+                                                <InArgument x:TypeArguments="x:String" x:Key="coinName">
+                                                  <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="coinName" />
+                                                </InArgument>
                                               </ui:InvokeWorkflowFile.Arguments>
                                               <sap:WorkflowViewStateService.ViewState>
                                                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -331,7 +354,7 @@
                                                     <av:PointCollection x:Key="ConnectorLocation">370,820 400,820 400,810 440,810</av:PointCollection>
                                                   </scg:Dictionary>
                                                 </sap:WorkflowViewStateService.ViewState>
-                                                <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke FilterTable workflow" sap:VirtualizedContainerService.HintSize="334,114" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_7" UnSafe="False" WorkflowFileName="FilterTable.xaml">
+                                                <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke FilterTable workflow" sap:VirtualizedContainerService.HintSize="200,52.6666666666667" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_7" UnSafe="False" WorkflowFileName="FilterTable.xaml">
                                                   <ui:InvokeWorkflowFile.Arguments>
                                                     <InOutArgument x:TypeArguments="sd:DataTable" x:Key="data">[bestSellData]</InOutArgument>
                                                     <InArgument x:TypeArguments="x:String" x:Key="coinName">[coinName]</InArgument>
@@ -386,9 +409,18 @@
                                 </sap:WorkflowViewStateService.ViewState>
                                 <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke ExtractBestBuy workflow" sap:VirtualizedContainerService.HintSize="200,52.6666666666667" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="ExtractBestBuy.xaml">
                                   <ui:InvokeWorkflowFile.Arguments>
-                                    <InArgument x:TypeArguments="x:String" x:Key="coinName">[coinName]</InArgument>
-                                    <InOutArgument x:TypeArguments="sd:DataTable" x:Key="newData">[newData]</InOutArgument>
-                                    <OutArgument x:TypeArguments="sd:DataTable" x:Key="bestBuyData">[bestBuyData]</OutArgument>
+                                    <InArgument x:TypeArguments="x:String" x:Key="coinName">
+                                      <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="coinName" />
+                                    </InArgument>
+                                    <InOutArgument x:TypeArguments="sd:DataTable" x:Key="newData">
+                                      <mva:VisualBasicReference x:TypeArguments="sd:DataTable" ExpressionText="newData" />
+                                    </InOutArgument>
+                                    <OutArgument x:TypeArguments="sd:DataTable" x:Key="bestBuyData">
+                                      <mva:VisualBasicReference x:TypeArguments="sd:DataTable" ExpressionText="bestBuyData" />
+                                    </OutArgument>
+                                    <InArgument x:TypeArguments="ui:Browser" x:Key="browser">
+                                      <mva:VisualBasicValue x:TypeArguments="ui:Browser" ExpressionText="browser" />
+                                    </InArgument>
                                   </ui:InvokeWorkflowFile.Arguments>
                                 </ui:InvokeWorkflowFile>
                                 <FlowStep.Next>
@@ -446,9 +478,18 @@
                                         </sap:WorkflowViewStateService.ViewState>
                                         <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke ExtractBestSell workflow" sap:VirtualizedContainerService.HintSize="200,52.6666666666667" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="ExtractBestSell.xaml">
                                           <ui:InvokeWorkflowFile.Arguments>
-                                            <InArgument x:TypeArguments="x:String" x:Key="coinName">[coinName]</InArgument>
-                                            <InOutArgument x:TypeArguments="sd:DataTable" x:Key="newData">[newData]</InOutArgument>
-                                            <OutArgument x:TypeArguments="sd:DataTable" x:Key="bestSellData">[bestSellData]</OutArgument>
+                                            <InArgument x:TypeArguments="x:String" x:Key="coinName">
+                                              <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="coinName" />
+                                            </InArgument>
+                                            <InOutArgument x:TypeArguments="sd:DataTable" x:Key="newData">
+                                              <mva:VisualBasicReference x:TypeArguments="sd:DataTable" ExpressionText="newData" />
+                                            </InOutArgument>
+                                            <OutArgument x:TypeArguments="sd:DataTable" x:Key="bestSellData">
+                                              <mva:VisualBasicReference x:TypeArguments="sd:DataTable" ExpressionText="bestSellData" />
+                                            </OutArgument>
+                                            <InArgument x:TypeArguments="ui:Browser" x:Key="browser">
+                                              <mva:VisualBasicValue x:TypeArguments="ui:Browser" ExpressionText="browser" />
+                                            </InArgument>
                                           </ui:InvokeWorkflowFile.Arguments>
                                         </ui:InvokeWorkflowFile>
                                         <FlowStep.Next>

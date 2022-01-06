@@ -3,6 +3,7 @@
     <x:Property Name="coinName" Type="InArgument(x:String)" />
     <x:Property Name="newData" Type="InOutArgument(sd:DataTable)" />
     <x:Property Name="bestBuyData" Type="OutArgument(sd:DataTable)" />
+    <x:Property Name="browser" Type="InArgument(ui:Browser)" />
   </x:Members>
   <sap:VirtualizedContainerService.HintSize>1848,1179.33333333333</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
@@ -83,7 +84,7 @@
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
     <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="434,94.6666666666667" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Trace" Message="[&quot;Extracting best buy data of coin: &quot; + coinName]" />
-    <ui:BrowserScope Browser="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" BrowserType="Edge" DisplayName="Attach Browser 'Bitcoinpr Page'" sap:VirtualizedContainerService.HintSize="434,344" sap2010:WorkflowViewState.IdRef="BrowserScope_6" InformativeScreenshot="898972272e610962d25de0fa5edeaf60" Selector="&lt;html app='msedge.exe' title='* price today, * to * live, marketcap and chart | CoinMarketCap' /&gt;">
+    <ui:BrowserScope SearchScope="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" Browser="[browser]" BrowserType="Edge" DisplayName="Attach Browser 'Bitcoinpr Page'" sap:VirtualizedContainerService.HintSize="434,344" sap2010:WorkflowViewState.IdRef="BrowserScope_6" InformativeScreenshot="898972272e610962d25de0fa5edeaf60">
       <ui:BrowserScope.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>

@@ -3,6 +3,7 @@
     <x:Property Name="previousData" Type="InArgument(sd:DataTable)" />
     <x:Property Name="newData" Type="OutArgument(sd:DataTable)" />
     <x:Property Name="config" Type="InArgument(scg:Dictionary(x:String, x:String))" />
+    <x:Property Name="browser" Type="InArgument(ui:Browser)" />
   </x:Members>
   <mva:VisualBasic.Settings>
     <x:Null />
@@ -308,7 +309,6 @@
       <AssemblyReference>System.Activities.Presentation</AssemblyReference>
       <AssemblyReference>System.Activities.Core.Presentation</AssemblyReference>
       <AssemblyReference>System.Collections.Immutable</AssemblyReference>
-      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
   <Sequence DisplayName="PrepareTable" sap:VirtualizedContainerService.HintSize="418,977.333333333333" sap2010:WorkflowViewState.IdRef="Sequence_1">
@@ -320,7 +320,12 @@
     <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="376,94.6666666666667" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Trace" Message="[&quot;Preparing main table&quot;]" />
     <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke LoadMainPageWebsite workflow" sap:VirtualizedContainerService.HintSize="376,114" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="LoadMainPageWebsite.xaml">
       <ui:InvokeWorkflowFile.Arguments>
-        <InArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="config">[config]</InArgument>
+        <InArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="config">
+          <mva:VisualBasicValue x:TypeArguments="scg:Dictionary(x:String, x:String)" ExpressionText="config" />
+        </InArgument>
+        <InArgument x:TypeArguments="ui:Browser" x:Key="browser">
+          <mva:VisualBasicValue x:TypeArguments="ui:Browser" ExpressionText="browser" />
+        </InArgument>
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>
     <Sequence DisplayName="Data Scraping" sap:VirtualizedContainerService.HintSize="376,462" sap2010:WorkflowViewState.IdRef="Sequence_8">
@@ -334,7 +339,12 @@
       </sap:WorkflowViewStateService.ViewState>
       <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke ExtractFormatTableFromMainPage workflow" sap:VirtualizedContainerService.HintSize="334,114" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="ExtractFormatTableFromMainPage.xaml">
         <ui:InvokeWorkflowFile.Arguments>
-          <InOutArgument x:TypeArguments="sd:DataTable" x:Key="ExtractDataTable">[ExtractDataTable]</InOutArgument>
+          <InOutArgument x:TypeArguments="sd:DataTable" x:Key="ExtractDataTable">
+            <mva:VisualBasicReference x:TypeArguments="sd:DataTable" ExpressionText="ExtractDataTable" />
+          </InOutArgument>
+          <InArgument x:TypeArguments="ui:Browser" x:Key="browser">
+            <mva:VisualBasicValue x:TypeArguments="ui:Browser" ExpressionText="browser" />
+          </InArgument>
         </ui:InvokeWorkflowFile.Arguments>
       </ui:InvokeWorkflowFile>
       <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke AddPreviousDataComparsions workflow" sap:VirtualizedContainerService.HintSize="334,114" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="AddPreviousDataComparsions.xaml">
